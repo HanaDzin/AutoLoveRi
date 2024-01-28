@@ -15,11 +15,13 @@ import App from './App.jsx'
 import HomeScreen from './screens/HomeScreen.jsx'
 import AllCarsScreen from './screens/AllCarsScreen.jsx'
 import RentaCarScreen from './screens/RentaCarScreen.jsx'
-import CarDetailsScreen from './screens/CarDetailsScreen.jsx'
+import NewCarDetailsScreen from './screens/NewCarDetailsScreen.jsx'
+import RentaCarDetailsScreen from './screens/RentaCarDetailsScreen.jsx'
 import NewCarsScreen from './screens/NewCarsScreen.jsx'
 import UsedCarsScreen from './screens/UsedCarsScreen.jsx'
 import AboutUsScreen from './screens/AboutUsScreen.jsx'
 import NewsScreen from './screens/NewsScreen.jsx'
+import UsedCarDetailsScreen from './screens/UsedCarDetailsScreen.jsx'
 
 
 
@@ -31,10 +33,15 @@ const router = createBrowserRouter(
       <Route path='/cars' element={<AllCarsScreen/>} />;
 
       <Route path='/rentacar/' element={<RentaCarScreen/>} />;
-      <Route path='/rentacar/:id' element={<CarDetailsScreen/>} />;
+      <Route path='/rentacar/:id' element={<RentaCarDetailsScreen/>} />;
 
-      <Route path='/newCars/' element={<NewCarsScreen/>} />;
-      <Route path='/usedCars/' element={<UsedCarsScreen/>} />;
+
+      <Route path='/newcars/' element={<NewCarsScreen/>} />;
+      <Route path='/newcars/:id' element={<NewCarDetailsScreen/>} />;
+
+      <Route path='/usedcars/' element={<UsedCarsScreen/>} />;
+      <Route path='/usedcars/:id' element={<UsedCarDetailsScreen/>} />;
+
 
       <Route path='/about' element={<AboutUsScreen/>} />;
 

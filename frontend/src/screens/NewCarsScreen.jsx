@@ -1,12 +1,13 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import { Link } from 'react-router-dom'
-import CarList from '../components/CarList/CarList'
+import NewCarsSelection from '../components/CarSelections/NewCarsSelection'
+
+
 
 const NewCarsScreen = () => {
   return (
 
     <div className='pb-20 pt-14 dark:bg-black dark:text-white duration-300 
-    bg-gray-200
     sm:min-h-[600px] sm:grid sm:place-items-center'>
         <div className='container'>
         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-16'></div>
@@ -17,13 +18,16 @@ const NewCarsScreen = () => {
           <p className='text-sm pb-3 text-center' data-aos="fade-up">
           Pogledajte široku ponudu potpuno novih vozila.</p>
 
-          <CarList />
+
+          <NewCarsSelection />
+
           <div className='grid place-content-center mt-8'>
                 <Link to={`/newcars`} ><button className='button-outline'
                 data-aos="fade-up">
                     Istraži ponudu
                 </button></Link>
             </div>
+
         </div>
 
     </div>

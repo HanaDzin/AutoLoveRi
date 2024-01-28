@@ -1,35 +1,37 @@
-const cars = [
+const usedCars = [
     {   
-        brand: 'Audi',
-        model: 'A5',
-        price: 23000,
-        makeYear: 2020,
-        motor: 'Diesel',
-        transmission: 'Auto',
-        image: '/src/assets/Audi.png',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id consequuntur atque ratione, impedit inventore tempore laboriosam cumque in amet explicabo eligendi velit iste dolorem minus aspernatur enim dolore delectus illo.'
-    },
-    {   
-        brand: 'BMW',
-        model: 'X6',
-        price: 32000,
-        makeYear: 2019,
+        brand: 'Toyota',
+        model: 'Corolla',
+        pricePerDay: 70,
+        makeYear: 2017,
         motor: 'Diesel',
         transmission: 'Manual',
-        image: '/src/assets/BMW.png',
+        mileage: 73400,
+        image: '/src/assets/rent-toyotacorolla.png',
         description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id consequuntur atque ratione, impedit inventore tempore laboriosam cumque in amet explicabo eligendi velit iste dolorem minus aspernatur enim dolore delectus illo.'
     },
     {   
-        brand: 'Mercedes',
-        model: 'S-class',
-        price: 41500,
-        makeYear: 2022,
+        brand: 'Peugeot',
+        model: '207',
+        pricePerDay: 45,
+        makeYear: 2015,
+        motor: 'Benzin',
+        transmission: 'Auto',
+        mileage: 145200,
+        image: '/src/assets/rent-peugeot.png',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id consequuntur atque ratione, impedit inventore tempore laboriosam cumque in amet explicabo eligendi velit iste dolorem minus aspernatur enim dolore delectus illo.'
+    },
+    {   
+        brand: 'Kia',
+        model: 'Rio',
+        price: 85,
+        makeYear: 2021,
         motor: 'Benzin',
         transmission: 'Manual',
-        image: 'src/assets/Mercedes.png',
+        mileage: 63000,
+        image: 'src/assets/rent-kiario.png',
         description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id consequuntur atque ratione, impedit inventore tempore laboriosam cumque in amet explicabo eligendi velit iste dolorem minus aspernatur enim dolore delectus illo.'
-    }
-    
+    },
 ]
 
-export default cars
+export default usedCars
