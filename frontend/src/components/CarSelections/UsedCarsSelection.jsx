@@ -1,31 +1,23 @@
-import React, {useState, useEffect} from 'react'
-import axios from 'axios';
+import { useGetUsedCarsQuery } from '../../slices/usedCarsApiSlice';
 
 
 //komponente:
 import UsedCarCard from './UsedCarCard'
-import { Link } from 'react-router-dom'
 
 
 const UsedCarsSelection = () => {
-  const [usedCars, setUsedCars] = useState([]);
-
-  useEffect(() => {
-    const fetchUsedCars = async () => {
-      try {
-        const response = await axios.get('http://localhost:5000/api/usedcars');
-        console.log(response.data); 
-        setUsedCars(response.data);
-      } catch (error) {
-        console.error('Error fetching new cars:', error);
-      }
-    };
-  
-    fetchUsedCars();
-  }, []);
+  const { data: usedCars, isLoading, error} = useGetUsedCarsQuery();
 
   return (
     <div className='pb-24 pt-14 dark:bg-black dark:text-white'>
+        { isLoading ? (
+      <h2>Loading...</h2>
+    ) : error ? (
+      <div>
+      {error?.data?.message || error.error}
+      </div>
+    ) : (
+      <>
         <div className="container">
             <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-16'>
             { usedCars.map((car) => (
@@ -34,6 +26,8 @@ const UsedCarsSelection = () => {
               ))}
             </div>
         </div>
+        </>
+    )}
     </div>
   )
 }

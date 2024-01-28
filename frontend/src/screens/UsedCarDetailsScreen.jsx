@@ -1,32 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import { useGetUsedCarDetailsQuery } from '../slices/usedCarsApiSlice';
 
 const UsedCarDetailsScreen = () => {
-  const [usedCar, setUsedCar] = useState([]);
 
   const { id } = useParams(); 
-  console.log(id);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(`http://localhost:5000/api/usedcars/${id}`);
-        
-        console.log(response.data);
-        setUsedCar(response.data);
-
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchData();
-
-  },[]); 
+  const { data: usedCar, isLoading, error } = useGetUsedCarDetailsQuery(id);
 
   return (
     <div className='dark:bg-black dark:text-white duration-300 bg-primary sm:min-h-[600px] sm:grid sm:place-items-center'>
+    { isLoading ? (
+      <h2>Loading...</h2>
+    ) : error ? (
+      <div>
+        {error?.data?.message || error.error}
+      </div>
+    ) : (
       <div className="container">
         <div className="grid grid-cols-1 sm:grid-cols-2 place-items-center">
           <div className='flex items-center p-5' data-aos="slide-right">
@@ -46,6 +35,7 @@ const UsedCarDetailsScreen = () => {
           </div>
         </div>
       </div> 
+    )}
     </div>
   );
 }

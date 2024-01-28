@@ -1,32 +1,24 @@
-import React, {useState, useEffect} from 'react'
-import axios from 'axios';
-
+import { useGetNewCarsQuery } from '../../slices/newCarsApiSlice'
 
 //komponente:
-import NewCarCard from './NewCarCard'
-import { Link } from 'react-router-dom'
+import NewCarCard from './NewCarCard';
 
 
 const NewCarsSelection = () => {
-  const [newCars, setNewCars] = useState([]);
-
-  useEffect(() => {
-    const fetchNewCars = async () => {
-      try {
-        const response = await axios.get('http://localhost:5000/api/newcars');
-        console.log(response.data); 
-        setNewCars(response.data);
-      } catch (error) {
-        console.error('Error fetching new cars:', error);
-      }
-    };
+  const { data: newCars, isLoading, error} = useGetNewCarsQuery();
   
-    fetchNewCars();
-  }, []);
 
   return (
     <div className='pb-24 pt-14 dark:bg-black dark:text-white'>
-        <div className="container">
+    { isLoading ? (
+      <h2>Loading...</h2>
+    ) : error ? (
+      <div>
+      {error?.data?.message || error.error}
+      </div>
+    ) : (
+      <>
+      <div className="container">
             <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-16'>
             { newCars.map((car) => (
               <NewCarCard key={car._id} _id={car._id} brand={car.brand} 
@@ -34,6 +26,9 @@ const NewCarsSelection = () => {
               ))}
             </div>
         </div>
+      </>
+    ) }
+        
     </div>
   )
 }
