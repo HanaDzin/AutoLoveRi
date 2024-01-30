@@ -1,8 +1,11 @@
 import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import {Badge} from 'react-bootstrap'
 
 import {BiSolidMoon, BiSolidSun} from 'react-icons/bi'
 import {HiMenuAlt1, HiMenuAlt3} from 'react-icons/hi'
+import { FaRegHeart } from "react-icons/fa";
 
 //mobile responsive menu
 import ResponsiveMenu from './ResponsiveMenu.jsx'
@@ -41,6 +44,9 @@ const toggleMenu = () => {
     setShowMenu(!showMenu);
 }
 
+//azuriranje wishlist-a/carta s brojem odabranih vozila
+const { cartItems } = useSelector( (state) => state.cart);
+
 
   return (
     
@@ -69,6 +75,18 @@ const toggleMenu = () => {
                         </div>
                         </Link>
                     ))}
+                    <div className='flex items-center'>
+                    <Link to='/cart' className='flex items-center'>
+                    <FaRegHeart className='text-2xl' />
+                    {
+                        cartItems.length > 0 && (
+                        <Badge className='ml-2' pill bg='success'>
+                            {cartItems.reduce((a, c) =>  a + c.qty, 0)}
+                        </Badge>
+                        )
+                    }
+                    </Link>
+                    </div>
                     <div>
                 {
                         theme == "dark" ? 

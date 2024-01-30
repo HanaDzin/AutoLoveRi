@@ -24,6 +24,7 @@ import UsedCarsScreen from './screens/UsedCarsScreen.jsx'
 import AboutUsScreen from './screens/AboutUsScreen.jsx'
 import NewsScreen from './screens/NewsScreen.jsx'
 import UsedCarDetailsScreen from './screens/UsedCarDetailsScreen.jsx'
+import CartScreen from './screens/CartScreen.jsx'
 
 
 
@@ -48,6 +49,10 @@ const router = createBrowserRouter(
       <Route path='/about' element={<AboutUsScreen/>} />;
 
       <Route path='/news' element={<NewsScreen/>} />;
+
+      <Route path='/cart' element={<CartScreen/>} />;
+
+
 
       
     </Route>

@@ -1,12 +1,26 @@
 
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useGetRentaCarDetailsQuery } from '../slices/rentaCarsApiSlice';
+import { useDispatch } from 'react-redux';
 
+import {addToCart} from '../slices/cartSlice.js'
+import { useState } from 'react';
 
 const RentaCarDetailsScreen = () => {
   
-  const { id } = useParams(); 
+  const { id } = useParams();
+  const [qty, setQty] = useState(1);
+
+   
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const { data: rentaCar, isLoading, error } = useGetRentaCarDetailsQuery(id);
+
+  const addToCartHandler = () => {
+    dispatch(addToCart({...rentaCar, qty}));
+    navigate('/cart');
+  }
 
   return (
     <div className='dark:bg-black dark:text-white duration-300 bg-primary sm:min-h-[600px] sm:grid sm:place-items-center'>
@@ -31,10 +45,14 @@ const RentaCarDetailsScreen = () => {
               <div>Mjenjač: {rentaCar.transmission}</div>
               <div>Broj sjedala: 5 </div>
               <p>{rentaCar.description}</p>
-
             </div>
           </div>
         </div>
+        <div className='dark:text-primary grid text-4xl place-content-center'>
+          Cijena: {rentaCar.pricePerDay} € / dan
+        </div>
+        <div className='grid place-content-center mt-8 mb-8'>
+            </div>
       </div> 
     )}
     </div>

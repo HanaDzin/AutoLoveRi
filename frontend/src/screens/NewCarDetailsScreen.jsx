@@ -1,14 +1,27 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useGetNewCarDetailsQuery } from '../slices/newCarsApiSlice';
+import {useDispatch } from 'react-redux';
+
+import {addToCart} from '../slices/cartSlice.js'
+import { useState } from 'react';
 
 
 const NewCarDetailsScreen = () => {
   const { id } = useParams(); 
+  const [qty, setQty] = useState(1);
+ 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const { data: newCar, isLoading, error } = useGetNewCarDetailsQuery(id);
 
+  const addToCartHandler = () => {
+    dispatch(addToCart({...newCar, qty}));
+    navigate('/cart');
+  }
+
   return (
-    <div className='dark:bg-black dark:text-white duration-300 bg-primary sm:min-h-[600px] sm:grid sm:place-items-center'>
+    <div className='mt-10 dark:bg-black dark:text-white duration-300 bg-primary sm:min-h-[600px] sm:grid sm:place-items-center'>
     { isLoading ? (
       <h2>Loading...</h2>
     ) : error ? (
@@ -23,17 +36,25 @@ const NewCarDetailsScreen = () => {
           </div>
 
           <div>
-            <div className='grid grid-rows-5 space-y-5 sm:p-16 pb-6'>
+            <div className='grid grid-rows-5 space-y-6 sm:p-16 pb-4'>
               <h1 className='text-3xl sm:text-4xl font-bold font-serif' data-aos="fade-up">{newCar.brand} {newCar.model}</h1>
               <div>Godina proizvodnje: {newCar.makeYear}</div>
               <div>Motor: {newCar.motor}</div>
               <div>Mjenjač: {newCar.transmission}</div>
               <div>Broj sjedala: 5 </div>
               <p>{newCar.description}</p>
-
             </div>
           </div>
         </div>
+        <div className='dark:text-primary grid text-4xl place-content-center'>
+          Cijena: {newCar.price} €
+        </div>
+        <div className='grid place-content-center mt-8 mb-8'>
+                <button  
+                onClick={addToCartHandler}
+                className='button-outline text-black bg-primary-200 dark:bg-primary dark:text-black border-black'
+                data-aos="fade-up">Naruči odmah</button>
+            </div>
       </div></>
     )}
        
