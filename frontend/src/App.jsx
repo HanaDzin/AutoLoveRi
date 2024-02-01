@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react'
 import { Outlet, useOutletContext } from 'react-router-dom';
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
+
 //komponente
 import Navbar from './components/Navbar/Navbar'
 import Footer from './components/Footer/Footer';
@@ -43,6 +46,8 @@ useEffect(() => {
       <Navbar theme={theme} setTheme={setTheme}/>
       <Outlet context={theme}/>
       <Footer />
+
+      <ToastContainer />
       
     </div>
   )

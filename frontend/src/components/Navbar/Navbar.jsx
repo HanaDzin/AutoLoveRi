@@ -1,14 +1,18 @@
 import React, {useState} from 'react'
-import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
 import {Badge} from 'react-bootstrap'
+
+import { useLogoutMutation } from '../../slices/usersApiSlice.js'
+import { logout } from '../../slices/authSlice.js'
 
 import {BiSolidMoon, BiSolidSun} from 'react-icons/bi'
 import {HiMenuAlt1, HiMenuAlt3} from 'react-icons/hi'
-import { FaRegHeart } from "react-icons/fa";
+import { FaRegHeart, FaUser } from "react-icons/fa";
 
 //mobile responsive menu
 import ResponsiveMenu from './ResponsiveMenu.jsx'
+import Dropdown from '../Dropdown/Dropdown.jsx'
 
 export const NavLinks = [
     {
@@ -46,7 +50,7 @@ const toggleMenu = () => {
 
 //azuriranje wishlist-a/carta s brojem odabranih vozila
 const { cartItems } = useSelector( (state) => state.cart);
-
+const { userInfo } = useSelector( (state) => state.auth);
 
   return (
     
@@ -87,6 +91,16 @@ const { cartItems } = useSelector( (state) => state.cart);
                     }
                     </Link>
                     </div>
+                    
+                        {
+                            userInfo ? (<Dropdown userInfo={userInfo}></Dropdown>
+                            ) : (
+                                <div className='flex items-center'>
+                                <FaUser className='mr-2'/><Link to='/login'>Prijavi se</Link></div>
+                            )
+
+                        }
+                    
                     <div>
                 {
                         theme == "dark" ? 
