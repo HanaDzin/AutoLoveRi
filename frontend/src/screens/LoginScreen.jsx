@@ -51,7 +51,7 @@ const LoginScreen = () => {
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
           <form className="space-y-6" onSubmit={submitHandler}>
             <div>
-              <label className="dark:text-white block text-sm font-medium leading-6 text-gray-900">
+              <label className="text-left dark:text-white block text-sm font-medium leading-6 text-gray-900">
                 Email adresa
               </label>
               <div className="mt-2">

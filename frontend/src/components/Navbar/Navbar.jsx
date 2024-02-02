@@ -93,7 +93,7 @@ const { userInfo } = useSelector( (state) => state.auth);
                     </div>
                     
                         {
-                            userInfo ? (<Dropdown userInfo={userInfo}></Dropdown>
+                            userInfo ? (<Dropdown></Dropdown>
                             ) : (
                                 <div className='flex items-center'>
                                 <FaUser className='mr-2'/><Link to='/login'>Prijavi se</Link></div>

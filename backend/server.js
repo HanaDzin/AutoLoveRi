@@ -11,6 +11,7 @@ import connectDB from './config/db.js';
 // Uvoz ruta:
 import CarsRoutes from './routes/CarsRoutes.js';
 import UserRoutes from './routes/UserRoutes.js'
+import OrderRoutes from './routes/OrderRoutes.js'
 const port = process.env.PORT || 5000;
 
 connectDB();
@@ -31,12 +32,9 @@ app.get('/', (req, res) => {
   res.send(`API is running`);
 });
 
-// Da ne moramo u CarsRoutes pisati cijeli link
 app.use('/api', CarsRoutes);
-
-
 app.use('/api/users', UserRoutes);
-
+app.use('/api/orders', OrderRoutes);
  
 //kreirani middleware za potencijalne pogreške:
 app.use(notFound);

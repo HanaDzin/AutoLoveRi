@@ -5,14 +5,16 @@ import { FaUser } from 'react-icons/fa';
 import { useLogoutMutation } from '../../slices/usersApiSlice.js'
 import { logout } from '../../slices/authSlice.js'
 
-const Dropdown = ({ userInfo }) => {
+const Dropdown = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const { userInfo } = useSelector( (state) => state.auth);
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
-  const dispatch = useDispatch();
+const dispatch = useDispatch();
 const navigate = useNavigate();
 
   const [ logoutApiCall ] = useLogoutMutation();

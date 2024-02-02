@@ -22,6 +22,7 @@ const NewCarDetailsScreen = () => {
 
   return (
     <div className='mt-10 dark:bg-black dark:text-white duration-300 bg-primary sm:min-h-[600px] sm:grid sm:place-items-center'>
+    <div className="container">
     { isLoading ? (
       <h2>Loading...</h2>
     ) : error ? (
@@ -29,7 +30,7 @@ const NewCarDetailsScreen = () => {
         {error?.data?.message || error.error}
       </div>
     ) : (
-      <><div className="container">
+      <>
         <div className="grid grid-cols-1 sm:grid-cols-2 place-items-center">
           <div className='flex items-center p-5' data-aos="slide-right">
             <img src={newCar.image} alt="" />   
@@ -55,9 +56,10 @@ const NewCarDetailsScreen = () => {
                 className='button-outline text-black bg-primary-200 dark:bg-primary dark:text-black border-black'
                 data-aos="fade-up">Naruči odmah</button>
             </div>
-      </div></>
+      </>
     )}
        
+    </div>
     </div>
   );
 }
