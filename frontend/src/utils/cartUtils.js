@@ -1,21 +1,21 @@
 export const addDecimals = (num) => {
-    return (Math.round(num * 100) / 100).toFixed(2);
-  };
+  return (Math.round(num * 100) / 100).toFixed(2);
+};
 
-  export const updateCart = (state) => {
-    // izracun cijene
-    state.itemsPrice = addDecimals(
-        state.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0)
-      );
-        //cijena isporuke --> ako je vozilo skuplje od 50k nema, inace 1k
-      state.shippingPrice = addDecimals(state.itemsPrice > 50000 ? 0 : 1000);
+export const updateCart = (state) => {
+  // izracun cijene (zbroj svih cijena)
+  const itemsPrice = state.cartItems.reduce((acc, item) => acc + (item.price * 100 * 1) / 100, 0);
+  state.itemsPrice = addDecimals(itemsPrice);
 
-      state.totalPrice = (
-        Number(state.itemsPrice) +
-        Number(state.shippingPrice)).toFixed(2);
+    //cijena isporuke --> ako je narudžba skuplja od 50k nema, inace 1k
+    state.shippingPrice = addDecimals(state.itemsPrice > 50000 ? 0 : 1000);
 
-      // Save the cart to localStorage
-      localStorage.setItem('cart', JSON.stringify(state));
+    state.totalPrice = (
+      Number(state.itemsPrice) +
+      Number(state.shippingPrice)).toFixed(2);
 
-      return state;
-  }
+    // Save the cart to localStorage
+    localStorage.setItem('cart', JSON.stringify(state));
+
+    return state;
+}

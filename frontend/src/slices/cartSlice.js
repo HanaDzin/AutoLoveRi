@@ -1,8 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { updateCart } from '../utils/cartUtils';
 
-const initialState = localStorage.getItem('cart')
-  ? JSON.parse(localStorage.getItem('cart'))
+const initialState = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart"))
   : { cartItems: [], shippingAddress: {}, paymentMethod: 'PayPal' };
 
 
@@ -10,16 +9,17 @@ const initialState = localStorage.getItem('cart')
 const cartSlice = createSlice({
   name: 'cart',
   initialState,
+  //reducers object = funkcije koje imaju veze sa operacijama nad košaricom
   reducers: {
-    addToCart: (state, action) => {
-      // The item to add to the cart
+    addToCart: (state, action) => { 
+      //artikl koji dodajemo u košaricu dohvatit ćemo pomoću action.payload
       const item = action.payload;
 
-      // ako je vec u kosarici
+      // provjera ukoliko je vozilo koje zelimo dodati vec u cartu, 1. pronađi ga:
       const existItem = state.cartItems.find((x) => x._id === item._id);
 
       if (existItem) {
-        // povecati kolicinu
+        // povecati kolicinu(dodaj ga ponovno)
         state.cartItems = state.cartItems.map((x) =>
           x._id === existItem._id ? item : x
         );
