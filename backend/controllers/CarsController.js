@@ -5,6 +5,7 @@ import usedCar from '../models/usedCarModel.js'
 import rentaCar from "../models/rentaCarModel.js";
 
 
+
 // @desc dohvat svih novih vozila
 // @route GET /api/newcars
 // @acces public
@@ -24,8 +25,55 @@ const getNewCarById = asyncHandler (async (req, res) => {
         return res.json(theNewCar);
     } 
     res.status(404);
-    throw new Error('New Car not found');
+    throw new Error('Novo vozilo nije pronađeno');
 });
+
+//@desc     Dodaj novo vozilo (admin)
+//@route    POST /api/newcars
+//@access   admin
+const createNewCar = asyncHandler (async (req, res) => {
+    const newcar = new newCar ({
+        brand: 'BMW',
+        model: 'M2',
+        price: 0,
+        user: '65bebe5c95c1a057b6076715',
+        image: '/src/assets/bmw2.png',
+        makeYear: 2016,
+        motor: 'Diesel',
+        transmission: 'Manual',
+        description: 'Lorem ipsum'
+    })
+
+    const createdNewCar = await newcar.save();
+    res.status(201).json(createdNewCar);
+});
+
+// @desc Ažuriranje novog vozila
+// @route PUT /api/newcars/:id
+// @acces private/admin
+const updateNewCar = asyncHandler (async (req, res) => {
+    const { model, brand, price, description, image, makeYear, motor, transmission} = req.body;
+
+    const newcar = await newCar.findById(req.params.id);
+
+    if (newcar) {
+        newcar.model = model;
+        newcar.brand = brand;
+        newcar.price = price;
+        newcar.description = description;
+        newcar.image = image;
+        newcar.makeYear = makeYear;
+        newcar.motor = motor;
+        newcar.transmission = transmission;
+
+        const updatedNewCar = await newcar.save();
+        res.json(updatedNewCar);
+    } else {
+        res.status(404);
+        throw new Error('Resurs nije pronađen');
+    }
+});
+
 
 const getUsedCars = asyncHandler (async (req, res) => {
     const usedCars = await usedCar.find({});
@@ -41,7 +89,7 @@ const getUsedCarById = asyncHandler (async (req, res) => {
         return res.json(theUsedCar);
     } 
     res.status(404);
-    throw new Error('Used Car not found');
+    throw new Error('Rabljeno vozilo nije pronađeno');
 });
 
 const getRentaCars = asyncHandler (async (req, res) => {
@@ -60,4 +108,11 @@ const getRentaCarById = asyncHandler (async (req, res) => {
     throw new Error('RentaCar not found');
 });
 
-export {getNewCars, getNewCarById, getUsedCars, getUsedCarById, getRentaCars, getRentaCarById };
+export {getNewCars, 
+    getNewCarById,
+    createNewCar,
+    updateNewCar, 
+    getUsedCars, 
+    getUsedCarById, 
+    getRentaCars, 
+    getRentaCarById };

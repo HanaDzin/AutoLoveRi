@@ -7,6 +7,7 @@ export const newCarsApiSlice = apiSlice.injectEndpoints({
             query: () => ({
                 url: NEWCARS_URL,
             }),
+            providesTags: ['NewCar'],
             keepUnusedDataFor: 5
         }),
         getNewCarDetails: builder.query({
@@ -14,8 +15,26 @@ export const newCarsApiSlice = apiSlice.injectEndpoints({
                 url: `${NEWCARS_URL}/${newCarId}`,
             }),
             keepUnusedDataFor: 5,
+        }),
+        createNewCar: builder.mutation({
+            query: () => ({
+                url: NEWCARS_URL,
+                method: 'POST',
+            }),
+            invalidatesTags: ['NewCar'],
+        }),
+        updateNewCar: builder.mutation({
+            query: (data) => ({
+                url: `${NEWCARS_URL}/${data.newCarId}`,
+                method: 'PUT',
+                body: data
+            }),
+            invalidatesTags: ['NewCar'],
         })
     }),
 });
 
-export const { useGetNewCarsQuery, useGetNewCarDetailsQuery } = newCarsApiSlice;
+export const { useGetNewCarsQuery, 
+    useGetNewCarDetailsQuery, 
+    useCreateNewCarMutation,
+    useUpdateNewCarMutation } = newCarsApiSlice;

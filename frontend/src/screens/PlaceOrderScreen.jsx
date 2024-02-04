@@ -13,7 +13,7 @@ const PlaceOrderScreen = () => {
     const navigate = useNavigate();
     const cart = useSelector((state) => state.cart);
 
-    const [createOrder, {  }] = useCreateOrderMutation();
+    const [createOrder] = useCreateOrderMutation();
 
     useEffect(() => {
         if (!cart.shippingAddress.address) {

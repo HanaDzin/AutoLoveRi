@@ -45,7 +45,7 @@ useEffect(() => {
     <div>
       <Navbar theme={theme} setTheme={setTheme}/>
       <Outlet context={theme}/>
-      <Footer />
+      <Footer/>
 
       <ToastContainer />
       

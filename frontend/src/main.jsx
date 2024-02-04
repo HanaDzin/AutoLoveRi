@@ -33,6 +33,10 @@ import ShippingScreen from './screens/ShippingScreen.jsx'
 import PaymentScreen from './screens/PaymentScreen.jsx'
 import PlaceOrderScreen from './screens/PlaceOrderScreen.jsx'
 import OrderScreen from './screens/OrderScreen.jsx'
+import OrderListScreen from './screens/admin/OrderListScreen.jsx'
+import AdminRoute from './components/AdminRoute.jsx'
+import CarsListScreen from './screens/admin/CarsListScreen.jsx'
+import NewCarEditScreen from './screens/admin/NewCarEditScreen.jsx'
 
 
 const router = createBrowserRouter(
@@ -61,12 +65,20 @@ const router = createBrowserRouter(
       
 
       <Route path='' element={<PrivateRoute />}>
-                <Route path='/shipping' element={<ShippingScreen/>} />;
+        <Route path='/shipping' element={<ShippingScreen/>} />;
         <Route path='/payment' element={<PaymentScreen/>} />;
         <Route path='/placeorder' element={<PlaceOrderScreen/>} />;
         <Route path='/cart' element={<CartScreen/>} />;
         <Route path='/order/:id' element={<OrderScreen/>} />;
       </Route>
+
+      <Route path='' element={<AdminRoute />}>
+        <Route path='/admin/orderlist' element={<OrderListScreen/>} />;
+        <Route path='/admin/carlist' element={<CarsListScreen/>} />;
+        <Route path='/admin/newcar/:id/edit' element={<NewCarEditScreen/>} />;
+      </Route>
+
+
     </Route>
 
   )
