@@ -6,11 +6,11 @@ const generateToken = (res, userId) => {
         expiresIn: '30d'
     });
 
-    //postavi JWT kao HTTP-Only Cookie
+//postavi JWT kao HTTP-Only Cookie
     res.cookie('jwt', token, {
-        httpOnly: true,
+        httpOnly: false,
         secure: process.env.NODE_ENV !== 'development',
-        sameSite: 'none',
+        sameSite: 'strict',
         maxAge: 30 * 24 * 60 * 60 * 1000,       //30 dana u milisekundama
     });
 }
