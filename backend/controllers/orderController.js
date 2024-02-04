@@ -12,6 +12,7 @@ const addOrderItems = asyncHandler (async (req, res) => {
         paymentMethod,
         itemsPrice,
         shippingPrice,
+        totalPrice
     } = req.body;
 
     if (orderItems && orderItems.length == 0) {
@@ -21,14 +22,15 @@ const addOrderItems = asyncHandler (async (req, res) => {
         const order = new Order ({
             orderItems: orderItems.map((x) => ({
                 ...x, 
-                product: x._id,
-                _id: undefined
+                car: x._id,
+                _id: undefined,
             })),
             user: req.user._id,
             shippingAddress,
             paymentMethod,
             itemsPrice,
-            shippingPrice
+            shippingPrice,
+            totalPrice
         });
 
         const createdOrder = await order.save();

@@ -7,6 +7,7 @@ import users from "./data/users.js"
 import newcars from "./data/CarData.js"
 import usedcars from './data/usedCarsData.js'
 import rentacars from './data/rentaCarsData.js'
+import orders from './data/order.js'
 
 import User from './models/userModel.js';
 import newCar from './models/newCarModel.js';
@@ -49,11 +50,15 @@ const importData = async () => {
             return { ...car, user: adminUser};
         });
 
+        const sampleOrder = orders.map((order) => {
+            return { ...order, user: adminUser};
+        });
+
         //unos auta u bazu
         await newCar.insertMany(sampleNewCars);
         await usedCar.insertMany(sampleUsedCars);
         await rentaCar.insertMany(sampleRentaCars);
-
+        await Order.insertMany(sampleOrder);
 
         console.log('Data imported'.green.inverse);
 

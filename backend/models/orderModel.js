@@ -11,11 +11,17 @@ const orderSchema = mongoose.Schema({
         name: {type: String, required: true },
         image: {type: String, required: true },
         price: {type: Number, required: true },
+        car: {
+            type: mongoose.Schema.Types.ObjectId,
+            required: true,
+            ref: "NewCar",
+          },
         }
     ],
     shippingAddress: {
         address: {type: String, required: true},
         city: {type: String, required: true},
+        postalCode: { type: String, required: true },
         country: {type: String, required: true},
     },
     paymentMethod: {
@@ -38,6 +44,11 @@ const orderSchema = mongoose.Schema({
         required: true,
         default: 0.0,
     },
+    totalPrice: {
+        type: Number,
+        required: true,
+        default: 0.0,
+      },
 
     isPaid: {
         type: Boolean,

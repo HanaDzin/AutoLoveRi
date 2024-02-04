@@ -1,4 +1,4 @@
-
+import React from 'react';
 import RentaCarCard from './RentaCarCard'
 import { useGetRentaCarsQuery } from '../../slices/rentaCarsApiSlice';
 

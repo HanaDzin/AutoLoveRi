@@ -25,7 +25,7 @@ router.post('/auth',  authUser);
 // (jer samo reg korisnik to moze)
 router.route('/profile').get(protect, getUserProfile).put(protect, updateUserProfile);
 
-//brisanje i ažuriranje od strane admina
+//brisanje, dohvat određenog korisnika i ažuriranje od strane admina
 router.route('/:id').delete(protect, admin, deleteUser).get(protect, admin, getUserById).put(protect, admin, updateUser);
 
 

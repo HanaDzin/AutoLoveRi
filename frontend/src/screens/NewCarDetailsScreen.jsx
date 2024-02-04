@@ -1,3 +1,4 @@
+import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useGetNewCarDetailsQuery } from '../slices/newCarsApiSlice';
 import {useDispatch } from 'react-redux';

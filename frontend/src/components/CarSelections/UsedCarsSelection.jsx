@@ -1,5 +1,5 @@
+import React from 'react';
 import { useGetUsedCarsQuery } from '../../slices/usedCarsApiSlice';
-
 
 //komponente:
 import UsedCarCard from './UsedCarCard'

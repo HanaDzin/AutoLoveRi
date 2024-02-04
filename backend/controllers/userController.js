@@ -4,7 +4,7 @@ import generateToken from "../utils/generateToken.js";
 
 
 // @desc autentifikacija korisnika i uzimanje tokena
-// @route POST /api/users/login
+// @route POST /api/users/auth
 // @acces public
 const authUser = asyncHandler (async (req, res) => {
     const { email, password } = req.body;
@@ -23,7 +23,7 @@ const authUser = asyncHandler (async (req, res) => {
         });
     } else {
         res.status(401);        //unauthorized
-        throw new Error('Invalid email or password');
+        throw new Error('Neispravan email ili lozinka');
     }
 
 });
@@ -64,14 +64,10 @@ const registerUser = asyncHandler (async (req, res) => {
 // @desc Odjava (logout) korisnika / brisanje cookie-a
 // @route POST /api/users/logout
 // @acces private
-const logoutUser = asyncHandler (async (req, res) => {
-    res.cookie('jwt', '', {
-        httpOnly: true,
-        expires: new Date(0),
-    });
-
-    res.status(200).json({ message: 'Uspješna odjava' });
-});
+const logoutUser = (req, res) => {
+    res.clearCookie('jwt');
+    res.status(200).json({ message: 'Uspješna odjava!' });
+  };
 
 // @desc dohvati profil korisnika
 // @route GET /api/users/profile

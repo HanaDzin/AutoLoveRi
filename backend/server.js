@@ -1,10 +1,12 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
-import cors from 'cors'; 
+
+
 dotenv.config();
 
 import { notFound, errorHandler } from './middleware/errorMiddleware.js';
+import cors from 'cors'
 
 import connectDB from './config/db.js';
 
@@ -25,8 +27,12 @@ app.use(express.urlencoded({extended: true}));
 //cookie parser middleware:
 app.use(cookieParser());
 
-// Enable CORS for all routes
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:5173',
+  methods: 'GET, HEAD, PUT, PATCH, POST, DELETE',
+  credentials: true,
+}));
+
 
 app.get('/', (req, res) => {
   res.send(`API is running`);
