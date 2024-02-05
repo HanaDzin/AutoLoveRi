@@ -1,23 +1,37 @@
 import React from 'react'
-
 import { FaTimes, FaEdit, FaTrash } from 'react-icons/fa'
-import { useGetNewCarsQuery, useCreateNewCarMutation } from '../../slices/newCarsApiSlice'
+
+import { useGetNewCarsQuery, 
+  useCreateNewCarMutation, 
+  useDeleteNewCarMutation } from '../../slices/newCarsApiSlice'
+
 import { Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import { deleteNewCar } from '../../../../backend/controllers/CarsController'
 
 const CarsListScreen = () => {
     const { data: newCars, isLoading, error, refetch } = useGetNewCarsQuery();
 
     const [createNewCar, { isLoading: loadingCreate }] = useCreateNewCarMutation();
 
-    const deleteHandler = (id) => {
-        console.log('delete', id);
+    const [deleteNewCar, { isLoading: loadingDelete}] = useDeleteNewCarMutation();
+
+    const deleteHandler = async (id) => {
+        if (window.confirm('Jeste li sigurni da želite obrisati vozilo?')) {
+          try {
+            await deleteNewCar(id);
+            refetch();
+          } catch(err) {
+            toast.error(err?.data?.message || err.error)
+          }
+        }
     };
 
     const createNewCarHandler = async () => {
       if (window.confirm('Jeste li sigurni da želite dodati novo vozilo?')) {
         try {
           await createNewCar();
+          toast.success('Vozilo uspješno obrisano!')
           refetch();
         } catch (err) {
           toast.err(err?.data?.message || err.error)
@@ -38,6 +52,7 @@ const CarsListScreen = () => {
         </div>
 
         { loadingCreate && <h1>Loading...</h1>}
+        { loadingDelete && <h1>Loading...</h1>}
         {
             isLoading ? <h1>Loading...</h1> : error ? <h1>{error}</h1> : (
                 <>

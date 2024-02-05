@@ -58,7 +58,7 @@ const Dropdown = () => {
                 role="menuitem" onClick={closeDropdown}
               > Vozila</Link>
               <Link
-                to='/admin/users'
+                to='/admin/userlist'
                 className="block px-4 py-2 text-sm dark:text-white text-black hover:bg-primary hover:text-black"
                 role="menuitem" onClick={closeDropdown}
               > Korisnici</Link>

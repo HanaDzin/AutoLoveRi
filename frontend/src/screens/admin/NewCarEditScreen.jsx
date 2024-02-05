@@ -1,8 +1,12 @@
     import React, { useEffect, useState } from 'react'
     import FormContainer from '../../components/formContainer/formContainer'
     import { toast } from 'react-toastify'
-    import { useUpdateNewCarMutation, useGetNewCarDetailsQuery } from '../../slices/newCarsApiSlice'
-    import { Form, useNavigate, useParams } from 'react-router-dom'
+
+    import { useUpdateNewCarMutation, 
+        useGetNewCarDetailsQuery, 
+        useUploadNewCarImageMutation } from '../../slices/newCarsApiSlice'
+
+    import { useNavigate, useParams } from 'react-router-dom'
     import { Link } from 'react-router-dom'
 
 
@@ -25,6 +29,8 @@
             error } = useGetNewCarDetailsQuery(newCarId);
 
         const [ updateNewCar, { isLoading: loadingUpdate } ] = useUpdateNewCarMutation();
+
+        const [ uploadNewCarImage, {isLoading: loadingUpload}] = useUploadNewCarImageMutation();
 
         const navigate = useNavigate();
 
@@ -64,27 +70,38 @@
 
         }, [newCar])
 
+    const uploadFileHandler = async (e) => {
+        const formData = new FormData();
+        formData.append('image', e.target.files[0]);
+        try {
+            const res = await uploadNewCarImage(formData).unwrap();
+            toast.success(res.message);
+            setImage(res.image);
+        } catch (err) {
+            toast.error(err?.data?.message || err.error);
+        }
+    }
 
-    return (
-        <div className=" dark:bg-dark mt-16 dark:text-white font-bold text-gray-900">
-            <div className='dark:bg-dark container p-10'>
-                <h1 className=' text-3xl dark:text-primary text-left mb-6'>Ažuriraj vozilo</h1>
-                <Link to="/admin/carlist"><button className='button-outline text-sm mb-4'>Natrag</button></Link>
-                <div className='grid grid-cols-2'>
-                <FormContainer>
 
-                { loadingUpdate && <h1>Loading...</h1> }
+    return ( <>
+            <FormContainer>
+            <div className="px-20 mt-20 dark:text-white mt-8 text-center text-2xl font-bold text-gray-900">
+            <h1 className=' text-3xl dark:text-primary text-left mb-6 mt-6'>Ažuriraj vozilo</h1>
+            </div>
 
-             { isLoading ? <h1>Loading</h1> : error ? <h1>{error}</h1> : (
+            { loadingUpdate && <h1>Loading...</h1> }
 
+            { isLoading ? <h1>Loading</h1> : error ? <h1>{error}</h1> : (
+        
+        <div className="text-left mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         <form className="space-y-4" onSubmit={submitHandler}>
 
-    <div>
-    <div className="flex items-center justify-between">
-        <label className="dark:text-white block text-sm font-medium leading-6 text-gray-900">
-        Marka
-        </label>
-    </div>
+        <div>
+        <div className="flex items-center justify-between">
+            <label className="dark:text-white block text-sm font-medium leading-6 text-gray-900">
+            Marka
+            </label>
+        </div>
     <div className="mt-2">
         <input
         id="brand"
@@ -133,6 +150,34 @@
         shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 
         focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm 
         sm:leading-6"
+        />
+    </div>
+    </div>
+
+    <div>
+    <label className="text-left dark:text-white block text-sm font-medium leading-6 text-gray-900">
+        Slika
+    </label>
+    <div className="mt-2">
+        <input
+        id="image"
+        name="image"
+        type="text"
+        value={image}
+        onChange={(e) => setImage(e.target.value)}
+        className="block w-full rounded-md border-0 p-2.5 text-gray-900 
+        shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 
+        focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm 
+        sm:leading-6"
+        />
+        <input
+        label="Odaberi datoteku"
+        type="file"
+        onChange={uploadFileHandler}
+        className="block w-full rounded-md border-0 p-2.5 text-gray-900 
+        shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 
+        focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm 
+        sm:leading-6 mt-2"
         />
     </div>
     </div>
@@ -218,21 +263,17 @@
     <div>
     <button
         type="submit"
-        className="flex justify-center rounded-md bg-indigo-600 
+        className="flex w-full justify-center rounded-md bg-indigo-600 
         mt-10 px-4 py-1.5 text-sm font-semibold leading-6 text-white 
         shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 
         focus-visible:outline-offset-2 focus-visible:outline-indigo-600"> Ažuriraj
     </button>
     </div>
     </form>
+    </div>
     )}
     </FormContainer>
-                </div>
-                
-                </div>
-                <div>
-            </div>
-        </div>
+</>
     )
     }
 

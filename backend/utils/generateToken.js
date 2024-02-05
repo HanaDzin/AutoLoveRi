@@ -8,7 +8,7 @@ const generateToken = (res, userId) => {
 
 //postavi JWT kao HTTP-Only Cookie
     res.cookie('jwt', token, {
-        httpOnly: false,
+        httpOnly: true,
         secure: process.env.NODE_ENV !== 'development',
         sameSite: 'strict',
         maxAge: 30 * 24 * 60 * 60 * 1000,       //30 dana u milisekundama

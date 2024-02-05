@@ -1,4 +1,4 @@
-import { NEWCARS_URL } from "../constants";
+import { NEWCARS_URL, UPLOADS_URL } from "../constants";
 import { apiSlice } from "./apiSlice";
 
 export const newCarsApiSlice = apiSlice.injectEndpoints({
@@ -7,7 +7,7 @@ export const newCarsApiSlice = apiSlice.injectEndpoints({
             query: () => ({
                 url: NEWCARS_URL,
             }),
-            providesTags: ['NewCar'],
+            providesTags: ['NewCars'],
             keepUnusedDataFor: 5
         }),
         getNewCarDetails: builder.query({
@@ -29,7 +29,20 @@ export const newCarsApiSlice = apiSlice.injectEndpoints({
                 method: 'PUT',
                 body: data
             }),
-            invalidatesTags: ['NewCar'],
+            invalidatesTags: ['NewCars'],
+        }),
+        uploadNewCarImage: builder.mutation ({
+            query: (data) => ({
+                url: `${UPLOADS_URL}`,
+                method: 'POST',
+                body: data,
+            })
+        }),
+        deleteNewCar: builder.mutation ({
+            query: (newCarId) => ({
+                url: `${NEWCARS_URL}/${newCarId}`,
+                method: 'DELETE',
+            })
         })
     }),
 });
@@ -37,4 +50,6 @@ export const newCarsApiSlice = apiSlice.injectEndpoints({
 export const { useGetNewCarsQuery, 
     useGetNewCarDetailsQuery, 
     useCreateNewCarMutation,
+    useUploadNewCarImageMutation,
+    useDeleteNewCarMutation,
     useUpdateNewCarMutation } = newCarsApiSlice;

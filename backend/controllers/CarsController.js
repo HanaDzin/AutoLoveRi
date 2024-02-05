@@ -73,6 +73,21 @@ const updateNewCar = asyncHandler (async (req, res) => {
         throw new Error('Resurs nije pronađen');
     }
 });
+// @desc Brisanje novog vozila
+// @route DELETE /api/newcars/:id
+// @acces private/admin
+const deleteNewCar = asyncHandler (async (req, res) => {
+
+    const newcar = await newCar.findById(req.params.id);
+
+    if (newcar) {
+        await newCar.deleteOne({ _id: newcar._id })
+        res.status(200).json({ message: 'Novo vozilo obrisano' })
+    } else {
+        res.status(404);
+        throw new Error('Resurs nije pronađen');
+    }
+});
 
 
 const getUsedCars = asyncHandler (async (req, res) => {
@@ -111,7 +126,8 @@ const getRentaCarById = asyncHandler (async (req, res) => {
 export {getNewCars, 
     getNewCarById,
     createNewCar,
-    updateNewCar, 
+    updateNewCar,
+    deleteNewCar,
     getUsedCars, 
     getUsedCarById, 
     getRentaCars, 
