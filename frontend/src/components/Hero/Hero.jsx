@@ -1,14 +1,14 @@
 import React from 'react'
 
-import blackCar from '../../assets/blackCar.png'
+import blackCar from '../../assets/blackBMW.png'
 import whiteCar from '../../assets/whiteCar.png'
 import { Link } from 'react-router-dom'
 
 const Hero = ({theme}) => {
   return (
     <div className='dark:bg-black dark:text-white duration-300 relative -z-20'>
-    <div className='container min-h-[720px] flex'>
-    <div className='grid place-items-center grid-cols-1 
+     <div className='container min-h-[720px] flex'>
+      <div className='grid place-items-center grid-cols-1 
     md:grid-cols-2 sm:grid-cols-2'
     data-aos="zoom-in" data-aos-duration="1000">
 

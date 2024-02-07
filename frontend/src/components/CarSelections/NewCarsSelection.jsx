@@ -20,6 +20,7 @@ const NewCarsSelection = () => {
     ) : (
       <>
       <div className="container">
+      <p data-aos="fade-up" className='mb-6 dark:text-primary text-3xl font-semibold text-center sm:text-4xl'>Nova vozila iz naše ponude</p>
             <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-16'>
             { newCars.map((car) => (
               <NewCarCard key={car._id} _id={car._id} brand={car.brand} 

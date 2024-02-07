@@ -12,7 +12,7 @@ const addOrderItems = asyncHandler (async (req, res) => {
         paymentMethod,
         itemsPrice,
         shippingPrice,
-        totalPrice
+        user
     } = req.body;
 
     if (orderItems && orderItems.length == 0) {
@@ -25,17 +25,20 @@ const addOrderItems = asyncHandler (async (req, res) => {
                 car: x._id,
                 _id: undefined,
             })),
-            user: req.user._id,
+            user: user,
             shippingAddress,
             paymentMethod,
             itemsPrice,
             shippingPrice,
-            totalPrice
+            totalPrice: itemsPrice,
         });
 
         const createdOrder = await order.save();
         res.status(201).json(createdOrder);
     }
+
+   res.json('Uspješno dodana narudžba!');
+
 });
 
 // @desc dohvat svih narudžbi logiranog korisnika
@@ -63,10 +66,28 @@ const getOrderById = asyncHandler (async (req, res) => {
 });
 
 // @desc ažuriranje statusa narudžbe na "plaćeno"
-// @route GET /api/orders/:id/pay
+// @route PUT /api/orders/:id/pay
 // @acces private
 const updateOrderToPaid = asyncHandler (async (req, res) => {
-    res.send('updateOrderToPaid')
+    const order = await Order.findById(req.params.id);
+
+    if (order) {
+        order.isPaid = true;
+        order.paidAt = Date.now();
+        order.paymentResult = {
+            _id: req.body.id,
+            status: req.body.status,
+            update_time: req.body.update_time,
+            email_address: req.body.payer.email_address,
+        };
+
+        const updatedOrder = await order.save();
+        res.status(200).json(updatedOrder);
+
+        } else {
+            res.status(404);
+            throw new Error ('Narudžba nije pronađena')
+    }
 });
 
 // @desc ažuriranje statusa narudžbe na "isporučeno"
@@ -77,7 +98,7 @@ const updateOrderToDelivered = asyncHandler (async (req, res) => {
 });
 
 // @desc dohvat svih narudžbi (da admin može vidjeti sve, od svih korisnika)
-// @route GET /api/orders/
+// @route PUT /api/orders/
 // @acces private/admin
 const getOrders = asyncHandler (async (req, res) => {
     const orders = await Order.find({}).populate('user', 'id name');

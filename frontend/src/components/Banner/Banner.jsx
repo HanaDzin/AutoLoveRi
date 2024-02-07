@@ -7,7 +7,7 @@ const Banner = () => {
     <div className='dark:bg-black dark:text-white duration-300 relative -z-20'>
     <div className='container min-h-[720px] flex flex-col items-center'>
 
-        <img src={ banner } alt=""
+        <img src={ banner } data-aos="fade-up" alt=""
         className='mt-8 relative -z-10 max-h-[500px] sm:scale-105 drop-shadow-[2px_20px_6px_rgba(0,0,0,0.50)] sm:pt-20' />
     
     

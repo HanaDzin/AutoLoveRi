@@ -21,8 +21,12 @@ export const ordersApiSlice = apiSlice.injectEndpoints({
                 url: ORDERS_URL,
             }),
             keepUnusedDataFor: 5,
-        })
+        }),
     })
 });
 
-export const { useCreateOrderMutation, useGetOrderDetailsQuery, useGetOrdersQuery } = ordersApiSlice;
+export const { 
+    useCreateOrderMutation, 
+    useGetOrderDetailsQuery, 
+    useGetOrdersQuery,
+    useGetMyOrdersQuery } = ordersApiSlice;

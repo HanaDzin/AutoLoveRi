@@ -11,7 +11,9 @@ import { Card, ListGroup, Row, Col, Button } from 'react-bootstrap'
 const PlaceOrderScreen = () => {
 
     const navigate = useNavigate();
+
     const cart = useSelector((state) => state.cart);
+    const user = useSelector((state) => state.auth);
 
     const [createOrder] = useCreateOrderMutation();
 
@@ -33,6 +35,8 @@ const PlaceOrderScreen = () => {
         paymentMethod: cart.paymentMethod,
         itemsPrice: cart.itemsPrice,
         shippingPrice: cart.shippingPrice,
+        user: user.userInfo,
+
       }).unwrap();
       dispatch(clearCartItems());
       navigate(`/order/${res._id}`);

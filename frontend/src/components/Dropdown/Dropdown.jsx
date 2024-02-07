@@ -51,7 +51,7 @@ const Dropdown = () => {
             >
               Moj Profil
             </Link>
-            {userInfo.isAdmin && ( // Render this link only if the user is an admin
+            {userInfo.isAdmin && ( 
               <><Link
                 to='/admin/carlist'
                 className="block px-4 py-2 text-sm dark:text-white text-black hover:bg-primary hover:text-black"
@@ -73,7 +73,7 @@ const Dropdown = () => {
             <Link
               to='/logout'
               onClick={logoutHandler}
-              className="block px-4 py-2 text-sm dark:text-white text-black hover:bg-gray-100 hover:text-primary"
+              className="block px-4 py-2 text-sm dark:text-white text-black hover:bg-primary hover:text-black"
               role="menuitem"
             >
               Odjava

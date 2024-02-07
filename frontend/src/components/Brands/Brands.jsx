@@ -17,7 +17,7 @@ const Brands = () => {
       Vozila najpoznatijih svjetskih brendova
     </h1>
 
-    <div className='grid grid-cols-8 justify-center space-y-5 sm:p-16 pb-6 gap-10'>
+    <div className='grid lg:grid-cols-8 sm:grid-cols-4 justify-center space-y-5 sm:p-16 pb-6 gap-10'>
       <div className='flex items-center transition-transform transform hover:scale-105'>
         <img src={brand1} className='object-contain' alt="" />
       </div>

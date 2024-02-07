@@ -21,12 +21,6 @@ const NewCarsScreen = () => {
 
           <NewCarsSelection />
 
-          <div className='grid place-content-center mt-8'>
-                <Link to={`/newcars`} ><button className='button-outline'
-                data-aos="fade-up">
-                    Istraži ponudu
-                </button></Link>
-            </div>
 
         </div>
 

@@ -18,7 +18,7 @@ const About = () => {
           <div className='flex items-center p-5'>
             <img src={cheap} className='h-20 px-3 py-3' alt="" />
             <div className='ml-4'>
-              <h1 className='text-2xl font-semibold '>Povoljno</h1>
+              <h1 className='text-2xl font-semibold dark:text-primary'>Povoljno</h1>
               <p className='mt-2'>Garantirano najpovoljnije cijene na tržištu.</p>
             </div>
           </div>
@@ -26,7 +26,7 @@ const About = () => {
           <div className='flex items-center p-5'>
             <img src={fast} className='h-20 px-3 py-3' alt="" />
             <div className='ml-4'>
-              <h1 className='text-2xl font-semibold'>Brzo i sigurno</h1>
+              <h1 className='text-2xl font-semibold dark:text-primary'>Brzo i sigurno</h1>
               <p className='mt-2'>Do vozila iz snova za svega nekoliko minuta.</p>
             </div>
           </div>
@@ -34,7 +34,7 @@ const About = () => {
           <div className='flex items-center p-5'>
             <img src={cars} className='h-20 px-3 py-3' alt="" />
             <div className='ml-4'>
-              <h1 className='text-2xl font-semibold '>Široki asortiman</h1>
+              <h1 className='text-2xl font-semibold dark:text-primary'>Široki asortiman</h1>
               <p className='mt-2'>Raznolika ponuda automobila svih kategorija.</p>
             </div>
           </div>

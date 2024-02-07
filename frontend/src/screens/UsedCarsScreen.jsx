@@ -22,12 +22,6 @@ const UsedCarsScreen = () => {
 
     {/*ovdje dodati još odabir po 3 kategorije*/}
 
-    <div className='grid place-content-center mt-8'>
-                <Link to={`/usedcars`} ><button className='button-outline'
-                data-aos="fade-up">
-                    Istraži ponudu
-                </button></Link>
-            </div>
 
     </div>
     </div>

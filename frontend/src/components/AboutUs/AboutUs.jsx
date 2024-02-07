@@ -1,6 +1,6 @@
 import React from 'react'
 
-import aboutUs from '../../assets/aboutUs.jpg'
+import yellowCar from '../../assets/yellowCar.png'
 
 const AboutUs = () => {
   return ( 
@@ -27,7 +27,7 @@ const AboutUs = () => {
         className='grid'>
 
           <div className='flex items-center p-2'>
-            <img src={aboutUs}  alt="" />
+            <img src={yellowCar}  alt="" />
           </div>
       </div>
 

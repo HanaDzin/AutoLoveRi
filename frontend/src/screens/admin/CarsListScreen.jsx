@@ -20,6 +20,7 @@ const CarsListScreen = () => {
         if (window.confirm('Jeste li sigurni da želite obrisati vozilo?')) {
           try {
             await deleteNewCar(id);
+            toast.success('Vozilo uspješno obrisano!');
             refetch();
           } catch(err) {
             toast.error(err?.data?.message || err.error)
@@ -31,7 +32,7 @@ const CarsListScreen = () => {
       if (window.confirm('Jeste li sigurni da želite dodati novo vozilo?')) {
         try {
           await createNewCar();
-          toast.success('Vozilo uspješno obrisano!')
+          toast.success('Vozilo uspješno dodano!')
           refetch();
         } catch (err) {
           toast.err(err?.data?.message || err.error)
@@ -41,7 +42,7 @@ const CarsListScreen = () => {
 
 
   return (
-    <div className="dark:bg-dark px-10 mt-16 dark:text-white mt-8 text-center font-bold text-gray-900">
+    <div className="dark:bg-dark px-10 mt-16 mb-12 dark:text-white mt-8 text-center font-bold text-gray-900">
       <div className='items-center justify-center dark:bg-dark container p-10'>
       <h1 className='text-3xl dark:text-primary text-left mb-6'>Pregled svih vozila</h1>
 

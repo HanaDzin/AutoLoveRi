@@ -36,7 +36,7 @@ const Services = () => {
     sm:min-h-[600px] sm:grid sm:place-items-center'>
         <div className="container">
             <div className='pb-12'>
-            <h1 className='text-3xl font-semibold text-center font-serif 
+            <h1 className='dark:text-primary text-3xl font-semibold text-center font-serif 
             sm:text-4xl'>Naše usluge</h1>
             </div>
             <div className='grid grid-cols-1
