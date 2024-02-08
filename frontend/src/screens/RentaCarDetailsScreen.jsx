@@ -1,4 +1,5 @@
 
+import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useGetRentaCarDetailsQuery } from '../slices/rentaCarsApiSlice';
 import { useDispatch } from 'react-redux';
@@ -38,7 +39,7 @@ const RentaCarDetailsScreen = () => {
           </div>
 
           <div>
-            <div className='grid grid-rows-5 space-y-5 sm:p-16 pb-6'>
+            <div className='grid grid-rows-5 space-y-6 sm:p-16 pb-4'>
               <h1 className='text-3xl sm:text-4xl font-bold font-serif' data-aos="fade-up">{rentaCar.brand} {rentaCar.model}</h1>
               <div>Godina proizvodnje: {rentaCar.makeYear}</div>
               <div>Motor: {rentaCar.motor}</div>

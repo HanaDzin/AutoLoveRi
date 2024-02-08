@@ -6,7 +6,7 @@ import RentaCarSelection from '../components/CarSelections/RentaCarSelection'
 const RentaCarScreen = () => {
 
   return (
-    <div className='pb-20 pt-14 dark:bg-black dark:text-white'>
+    <div className='pb-10 pt-14 dark:bg-black dark:text-white'>
         <div className="container">
             <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-16'></div>
 

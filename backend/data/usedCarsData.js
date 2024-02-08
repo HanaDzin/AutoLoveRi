@@ -32,7 +32,7 @@ const usedCars = [
         transmission: 'Manual',
         numOfOwners: 1,
         mileage: 23000,
-        image: 'src/assets/used-captur.png',
+        image: '/src/assets/used-captur.png',
         description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id consequuntur atque ratione, impedit inventore tempore laboriosam cumque in amet explicabo eligendi velit iste dolorem minus aspernatur enim dolore delectus illo.'
     },
     {   
@@ -44,7 +44,7 @@ const usedCars = [
         transmission: 'Manual',
         numOfOwners: 2,
         mileage: 44230,
-        image: 'src/assets/used-captur.png',
+        image: '/src/assets/used-captur.png',
         description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id consequuntur atque ratione, impedit inventore tempore laboriosam cumque in amet explicabo eligendi velit iste dolorem minus aspernatur enim dolore delectus illo.'
     },
     {   
@@ -56,7 +56,7 @@ const usedCars = [
         transmission: 'Manual',
         numOfOwners: 2,
         mileage: 55300,
-        image: 'src/assets/used-opelcrossland.png',
+        image: '/src/assets/used-opelcrossland.png',
         description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id consequuntur atque ratione, impedit inventore tempore laboriosam cumque in amet explicabo eligendi velit iste dolorem minus aspernatur enim dolore delectus illo.'
     },
     {   
@@ -68,7 +68,7 @@ const usedCars = [
         transmission: 'Auto',
         numOfOwners: 3,
         mileage: 130650,
-        image: 'src/assets/used-mazdacx5.png',
+        image: '/src/assets/used-mazdacx5.png',
         description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id consequuntur atque ratione, impedit inventore tempore laboriosam cumque in amet explicabo eligendi velit iste dolorem minus aspernatur enim dolore delectus illo.'
     },
     

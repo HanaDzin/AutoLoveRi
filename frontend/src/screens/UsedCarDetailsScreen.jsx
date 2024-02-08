@@ -1,3 +1,4 @@
+import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useGetUsedCarDetailsQuery } from '../slices/usedCarsApiSlice';
 import { useDispatch } from 'react-redux';
@@ -38,7 +39,7 @@ const UsedCarDetailsScreen = () => {
               <div>Motor: {usedCar.motor}</div>
               <div>Mjenjač: {usedCar.transmission}</div>
               <div>Broj sjedala: 5 </div>
-              <p>Dodatna oprema uključuje: <br />{usedCar.description}</p>
+              <div>Dodatna oprema uključuje: <br />{usedCar.description}</div>
             </div>  
           </div>
           <div className='flex items-center p-5' data-aos="slide-left">

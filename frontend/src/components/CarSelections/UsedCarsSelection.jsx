@@ -9,7 +9,7 @@ const UsedCarsSelection = () => {
   const { data: usedCars, isLoading, error} = useGetUsedCarsQuery();
 
   return (
-    <div className='pb-24 pt-14 dark:bg-black dark:text-white'>
+    <div className='pb-6 pt-14 dark:bg-black dark:text-white'>
         { isLoading ? (
       <h2>Loading...</h2>
     ) : error ? (

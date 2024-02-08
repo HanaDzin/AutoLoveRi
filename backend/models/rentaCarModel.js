@@ -37,6 +37,9 @@ const rentaCarsSchema = new mongoose.Schema({
     transmission: {
         type: String
     },
+    description: {
+        type:String
+    }
    
 }, {
     timestamps: true
