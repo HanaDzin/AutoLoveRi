@@ -42,6 +42,7 @@ app.use('/api/orders', OrderRoutes);
 app.use('/api/upload', uploadRoutes);
 
 //paypal
+app.get('/api/config/paypal', (req, res) => res.send({ clientId: procces.env.PAYPAL_CLIENT_ID}));
 
 if (process.env.NODE_ENV === 'production') {
   const __dirname = path.resolve();
