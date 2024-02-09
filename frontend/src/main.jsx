@@ -37,6 +37,8 @@ import OrderListScreen from './screens/admin/OrderListScreen.jsx'
 import AdminRoute from './components/AdminRoute.jsx'
 import CarsListScreen from './screens/admin/CarsListScreen.jsx'
 import NewCarEditScreen from './screens/admin/NewCarEditScreen.jsx'
+import UsedCarEditScreen from './screens/admin/UsedCarEditScreen.jsx'
+import RentaCarEditScreen from './screens/admin/RentaCarEditScreen.jsx'
 import UserListScreen from './screens/admin/UserListScreen.jsx'
 import UserEditScreen from './screens/admin/UserEditScreen.jsx'
 import ProfileScreen from './screens/admin/ProfileScreen.jsx'
@@ -79,10 +81,13 @@ const router = createBrowserRouter(
       <Route path='' element={<AdminRoute />}>
         <Route path='/admin/orderlist' element={<OrderListScreen/>} />;
         <Route path='/admin/carlist' element={<CarsListScreen/>} />;
+        <Route path='/admin/userlist' element={<UserListScreen />} />;
 
         <Route path='/admin/newcar/:id/edit' element={<NewCarEditScreen/>} />;
+        <Route path='/admin/usedcar/:id/edit' element={<UsedCarEditScreen/>} />
+        <Route path='/admin/rentacar/:id/edit' element={<RentaCarEditScreen/>} />
 
-        <Route path='/admin/userlist' element={<UserListScreen />} />
+        
         <Route path='/admin/user/:id/edit' element={<UserEditScreen />} />
       </Route>
 

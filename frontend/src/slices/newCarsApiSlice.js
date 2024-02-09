@@ -31,7 +31,7 @@ export const newCarsApiSlice = apiSlice.injectEndpoints({
             }),
             invalidatesTags: ['NewCars'],
         }),
-        uploadNewCarImage: builder.mutation ({
+        uploadNewImage: builder.mutation ({
             query: (data) => ({
                 url: `${UPLOADS_URL}`,
                 method: 'POST',
@@ -50,6 +50,6 @@ export const newCarsApiSlice = apiSlice.injectEndpoints({
 export const { useGetNewCarsQuery, 
     useGetNewCarDetailsQuery, 
     useCreateNewCarMutation,
-    useUploadNewCarImageMutation,
+    useUploadNewImageMutation,
     useDeleteNewCarMutation,
     useUpdateNewCarMutation } = newCarsApiSlice;

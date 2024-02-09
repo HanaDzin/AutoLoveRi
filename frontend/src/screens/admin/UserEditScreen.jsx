@@ -31,7 +31,7 @@ const UserEditScreen = () => {
     const submitHandler = async (e) => {
         e.preventDefault();
         try {
-            await updateUser({ userId, name, email, isAdmin});
+            await updateUser({ userId, name, email, isAdmin: isAdmin});
             toast.success('Korisnik uspješno ažuriran');
             refetch();
             navigate('/admin/userlist');
@@ -44,7 +44,7 @@ const UserEditScreen = () => {
         if (user) {
             setName(user.name);
             setEmail(user.email);
-            setIsAdmin(user.isAdmin)
+            setIsAdmin(!!user.isAdmin)
         }
     }, [user]);
 

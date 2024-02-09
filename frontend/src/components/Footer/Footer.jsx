@@ -33,7 +33,7 @@ const Footer = () => {
         <div className="container"></div>
         <div className='grid md:grid-cols-3 py-5'>
 
-        <div className='py-8 px-14'>
+        <div className='py-8 px-20'>
             <h1 className='text-xl sm:text-3xl font-bold sm:text-left text-justify mb-3 gap-3 flex items-center'>AutoLoveRi</h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere impedit qui minima.</p><br />
             <div className='flex items-center gap-3'>

@@ -33,12 +33,14 @@ const UsedCarDetailsScreen = () => {
       <div className="container">
         <div className="grid grid-cols-1 sm:grid-cols-2 place-items-center">
           <div>
-            <div className='grid grid-rows-5 space-y-5 sm:p-16 pb-6'>
+            <div className='grid grid-rows-7 space-y-5 sm:p-16 pb-6'>
               <h1 className='text-3xl sm:text-4xl font-bold font-serif' data-aos="fade-up">{usedCar.brand} {usedCar.model}</h1>
               <div>Godina proizvodnje: {usedCar.makeYear}</div>
               <div>Motor: {usedCar.motor}</div>
               <div>Mjenjač: {usedCar.transmission}</div>
               <div>Broj sjedala: 5 </div>
+              <div>Broj prethodnih vlasnika: {usedCar.numOfOwners}</div>
+              <div>Prijeđeni kilometri: {usedCar.mileage}</div>
               <div>Dodatna oprema uključuje: <br />{usedCar.description}</div>
             </div>  
           </div>

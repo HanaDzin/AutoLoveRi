@@ -4,7 +4,7 @@
 
     import { useUpdateNewCarMutation, 
         useGetNewCarDetailsQuery, 
-        useUploadNewCarImageMutation } from '../../slices/newCarsApiSlice'
+        useUploadNewImageMutation } from '../../slices/newCarsApiSlice'
 
     import { useNavigate, useParams } from 'react-router-dom'
     import { Link } from 'react-router-dom'
@@ -30,7 +30,7 @@
 
         const [ updateNewCar, { isLoading: loadingUpdate } ] = useUpdateNewCarMutation();
 
-        const [ uploadNewCarImage, {isLoading: loadingUpload}] = useUploadNewCarImageMutation();
+        const [ uploadNewImage, {isLoading: loadingUpload}] = useUploadNewImageMutation();
 
         const navigate = useNavigate();
 
@@ -74,7 +74,7 @@
         const formData = new FormData();
         formData.append('image', e.target.files[0]);
         try {
-            const res = await uploadNewCarImage(formData).unwrap();
+            const res = await uploadNewImage(formData).unwrap();
             toast.success(res.message);
             setImage(res.image);
         } catch (err) {
