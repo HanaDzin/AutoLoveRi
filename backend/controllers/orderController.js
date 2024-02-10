@@ -95,7 +95,18 @@ const updateOrderToPaid = asyncHandler (async (req, res) => {
 // @route GET /api/orders/:id/delivery
 // @acces private/admin
 const updateOrderToDelivered = asyncHandler (async (req, res) => {
-    res.send('updateOrderToDelivered')
+    const order = await Order.findById(req.params.id);
+
+    if (order) {
+        order.isDelivered = true;
+        order.deliveredAt = Date.now();
+
+        const updatedOrder = await order.save();
+        res.status(200).json(updatedOrder);
+
+    } else {
+        throw new Error('Narudžba nije pronađena');
+    }
 });
 
 // @desc dohvat svih narudžbi (da admin može vidjeti sve, od svih korisnika)

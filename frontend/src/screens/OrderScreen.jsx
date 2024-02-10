@@ -3,7 +3,8 @@ import { Link, useParams } from 'react-router-dom'
 
 import { useGetOrderDetailsQuery, 
     useGetPayPalClientIdQuery,
-    usePayOrderMutation } from '../slices/ordersApiSlice'
+    usePayOrderMutation,
+    useDeliverOrderMutation } from '../slices/ordersApiSlice'
 
 import {PayPalButtons, usePayPalScriptReducer} from '@paypal/react-paypal-js'
 
@@ -23,6 +24,7 @@ const OrderScreen = () => {
 
         const [payOrder, { isLoading: loadingPay }] = usePayOrderMutation();
 
+        const [deliverOrder, {isLoading: loadingDeliver}] = useDeliverOrderMutation();
       
         const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
       
@@ -89,7 +91,17 @@ const OrderScreen = () => {
             toast.error(err.message);
         }
 
-  
+        const deliverOrderHandler = async () => {
+            try {
+                await deliverOrder(orderId);
+                refetch();
+                toast.success('Narudžba isporučena');
+            } catch (err) {
+                toast.error(err?.data?.message || err.message);
+            }
+        }
+
+        console.log(order);
   
     return (
         <div className="px-16 py-10 pb-4 mt-12 dark:text-white dark:bg-black 
@@ -109,7 +121,7 @@ const OrderScreen = () => {
                            <p className='mt-6 pb-2'>Status narudžbe: <br />
                             {
                                 order.isDelivered ? (
-                                    <p className='text-[green] bg-[green]/50'>Narudžba uspješno dostavljena</p>
+                                    <p className='text-[green] p-2 bg-[green]/50'>Narudžba uspješno dostavljena</p>
                                 ) : (
                                     <p className='text-[red] p-2 bg-[red]/50'> Narudžba nije dostavljena</p>
                                 ) 
@@ -147,33 +159,45 @@ const OrderScreen = () => {
                                 }
                             
                         </div>
+
                         <div className='text-right'>
                            <h3 className='pb-4'>Sažetak narudžbe</h3>
-                           {<>
+                           {
+                            <>
                             <p>Ukupna cijena vozila: {order.itemsPrice} €</p>
                             <p>Cijena isporuke: {order.shippingPrice} €</p>
                             <p className='text-4xl pt-4'>Ukupno za platiti: <strong className='text-primary'> {order.totalPrice} €</strong></p>
                             </>
                            }
-                            {
+                            {   
                                 !order.isPaid && (
-                                    <p>
-                                        { loadingPay && <h1>Loading...</h1> }
+                                <p>
+                                    { loadingPay && <h1>Loading...</h1> }
 
-                                        { isPending ? (<h1>Pending...</h1>) : (
-                                            <div>
-                                               {/**<button className='my-6 button-outline' onClick={onApproveTest}>Test pay Order</button> */} 
-                                            <div>
-                                                <PayPalButtons className='ml-16 pl-20 max-w-[600px]' 
-                                                    createOrder={createOrder}
-                                                    onApprove={onApprove}
-                                                    onError = {onError}>
-                                                </PayPalButtons>
+                                    { isPending ? (<h1>Pending...</h1>) : (
+                                    <div>
+                                    {/**<button className='my-6 button-outline' onClick={onApproveTest}>Test pay Order</button> */} 
+                                    <div>
+                                                
+                                    <PayPalButtons className='ml-16 pl-20 max-w-[600px]' 
+                                        createOrder={createOrder}
+                                        onApprove={onApprove}
+                                        onError = {onError}>
+                                    </PayPalButtons>
                                             </div>
                                             </div>
                                         )}
-                                    </p>
+                                        </p>
+
                                 )}
+                                {                     
+                                userInfo && userInfo.isAdmin && order.isPaid && !order.isDelivered && (
+                                <button className='button-outline mt-2'
+                                onClick={deliverOrderHandler}>Označi kao isporučeno</button>   
+                                )
+                                        
+                                }
+                                
 
                         </div>
 
