@@ -36,6 +36,7 @@ const PlaceOrderScreen = () => {
         itemsPrice: cart.itemsPrice,
         shippingPrice: cart.shippingPrice,
         user: user.userInfo,
+        totalPrice: cart.totalPrice,
 
       }).unwrap();
       dispatch(clearCartItems());
