@@ -40,7 +40,7 @@ const RentaCarDetailsScreen = () => {
 
           <div>
             <div className='grid grid-rows-5 space-y-6 sm:p-16 pb-4'>
-              <h1 className='text-3xl sm:text-4xl font-bold font-serif' data-aos="fade-up">{rentaCar.brand} {rentaCar.model}</h1>
+              <h1 className='text-3xl sm:text-4xl font-bold font-serif dark:text-primary' data-aos="fade-up">{rentaCar.brand} {rentaCar.model}</h1>
               <div>Godina proizvodnje: {rentaCar.makeYear}</div>
               <div>Motor: {rentaCar.motor}</div>
               <div>Mjenjač: {rentaCar.transmission}</div>
@@ -53,7 +53,11 @@ const RentaCarDetailsScreen = () => {
           Cijena: {rentaCar.pricePerDay} € / dan
         </div>
         <div className='grid place-content-center mt-8 mb-8'>
-            </div>
+                <button  
+                onClick={addToCartHandler}
+                className='button-outline text-black bg-primary-200 dark:bg-primary dark:text-black border-black'
+                data-aos="fade-up">Rezerviraj odmah</button>
+        </div>
       </div> 
     )}
     </div>

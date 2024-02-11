@@ -56,7 +56,7 @@ const NewCarDetailsScreen = () => {
                 onClick={addToCartHandler}
                 className='button-outline text-black bg-primary-200 dark:bg-primary dark:text-black border-black'
                 data-aos="fade-up">Naruči odmah</button>
-            </div>
+        </div>
       </>
     )}
        

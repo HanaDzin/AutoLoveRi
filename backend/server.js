@@ -15,6 +15,7 @@ import CarsRoutes from './routes/CarsRoutes.js';
 import UserRoutes from './routes/UserRoutes.js'
 import OrderRoutes from './routes/OrderRoutes.js'
 import uploadRoutes from './routes/uploadRoutes.js';
+import reviewRoutes from './routes/ReviewRoutes.js'
 
 const port = process.env.PORT || 5000;
 
@@ -40,6 +41,7 @@ app.use('/api', CarsRoutes);
 app.use('/api/users', UserRoutes);
 app.use('/api/orders', OrderRoutes);
 app.use('/api/upload', uploadRoutes);
+app.use ('/api/reviews', reviewRoutes);
 
 //paypal
 app.get('/api/config/paypal', (req, res) => res.send({ clientId: procces.env.PAYPAL_CLIENT_ID}));

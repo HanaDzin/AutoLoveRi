@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 
@@ -10,6 +10,8 @@ import {
   Route,
   RouterProvider,
 } from 'react-router-dom'
+
+import { useLocation } from 'react-router-dom'
 
 import { PayPalScriptProvider } from '@paypal/react-paypal-js'
 
@@ -44,6 +46,7 @@ import RentaCarEditScreen from './screens/admin/RentaCarEditScreen.jsx'
 import UserListScreen from './screens/admin/UserListScreen.jsx'
 import UserEditScreen from './screens/admin/UserEditScreen.jsx'
 import ProfileScreen from './screens/admin/ProfileScreen.jsx'
+
 
 
 const router = createBrowserRouter(

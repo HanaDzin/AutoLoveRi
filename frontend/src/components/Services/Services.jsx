@@ -21,13 +21,7 @@ const servicesData = [
         description: "Preko 100 rabljenih vozila u gotovo savršenom stanju.",
         aosDelay: "500",
      },
-     {
-        name:"Rent A Car",
-        icon: (<img src={cars} className="max-h-[150px] group-hover:text-black duration-300" />),
-        link: "/rentacar",
-        description: "Iznajmite neko od 50 dostupnih vozila",
-        aosDelay: "1000",
-     },
+
 ];
 
 const Services = () => {
@@ -41,7 +35,7 @@ const Services = () => {
             </div>
             <div className='grid grid-cols-1
             sm:grid-cols-2
-            md:grid-cols-3 gap-6'> 
+            md:grid-cols-2 gap-6'> 
             {
                 servicesData.map((service) => (
                     <Link to={service.link}><div 

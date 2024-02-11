@@ -8,12 +8,14 @@ import newcars from "./data/CarData.js"
 import usedcars from './data/usedCarsData.js'
 import rentacars from './data/rentaCarsData.js'
 import orders from './data/order.js'
+import reviews from './data/reviewsData.js'
 
 import User from './models/userModel.js';
 import newCar from './models/newCarModel.js';
 import rentaCar from "./models/rentaCarModel.js";
 import usedCar from "./models/usedCarModel.js";
 import Order from './models/orderModel.js';
+import Review from "./models/reviewModel.js";
 
 import connectDB from './config/db.js';
 
@@ -25,7 +27,7 @@ await connectDB();
 const importData = async () => {
     try {
         //pobriši sve prije unosa novih podataka:
-        await Order.deleteMany();
+        /*await Order.deleteMany();
         await newCar.deleteMany();
         await usedCar.deleteMany();
         await rentaCar.deleteMany();
@@ -58,7 +60,10 @@ const importData = async () => {
         await newCar.insertMany(sampleNewCars);
         await usedCar.insertMany(sampleUsedCars);
         await rentaCar.insertMany(sampleRentaCars);
-        await Order.insertMany(sampleOrder);
+        await Order.insertMany(sampleOrder);*/
+
+        await Review.deleteMany();
+        await Review.insertMany(reviews);
 
         console.log('Data imported'.green.inverse);
 
