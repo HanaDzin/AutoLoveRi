@@ -12,26 +12,9 @@ const AllCarsScreen = () => {
         
         <NewCarsScreen />
         
-            <div className='grid place-content-center pt-12 pb-6 dark:bg-black'>
-                <Link to={`/newcars`} >
-                <button className='button-outline' data-aos="fade-up">
-                Istraži ponudu
-                </button>
-                </Link>
-            </div>
-
-
         <UsedCarsScreen />
         
-            <div className='grid place-content-center pt-8 pb-4 dark:bg-black'>
-                <Link to={`/usedcars`} >
-                    <button className='button-outline' data-aos="fade-up">
-                    Istraži ponudu
-                    </button>
-                </Link>
-            </div>
-
-</div>
+    </div>
 
   )
 }

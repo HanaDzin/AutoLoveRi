@@ -46,6 +46,7 @@ import RentaCarEditScreen from './screens/admin/RentaCarEditScreen.jsx'
 import UserListScreen from './screens/admin/UserListScreen.jsx'
 import UserEditScreen from './screens/admin/UserEditScreen.jsx'
 import ProfileScreen from './screens/admin/ProfileScreen.jsx'
+import ArticleScreen from './screens/ArticleScreen.jsx'
 
 
 
@@ -67,7 +68,9 @@ const router = createBrowserRouter(
 
 
       <Route path='/about' element={<AboutUsScreen/>} />;
+
       <Route path='/news' element={<NewsScreen/>} />;
+      <Route path='/article' element={<ArticleScreen/>} />;
     
 
       <Route path='/login' element={<LoginScreen/>} />;
