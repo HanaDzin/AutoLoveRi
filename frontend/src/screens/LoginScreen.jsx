@@ -30,7 +30,6 @@ const LoginScreen = () => {
         }
     }, [navigate, redirect, userInfo])
 
-
     const submitHandler = async (e) => {
         e.preventDefault();
        try {

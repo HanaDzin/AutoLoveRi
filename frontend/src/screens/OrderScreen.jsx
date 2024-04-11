@@ -66,13 +66,6 @@ const OrderScreen = () => {
             });
         }
 
-
-        async function onApproveTest() {
-            await payOrder({orderId, details: {payer: {} }});
-            refetch();
-            toast.success('Uspješno plaćeno')
-        }
-
         function createOrder(data, actions) {
             return actions.order.create({
                 purchase_units: [
@@ -161,12 +154,12 @@ const OrderScreen = () => {
                         </div>
 
                         <div className='text-right'>
-                           <h3 className='pb-4'>Sažetak narudžbe</h3>
+                           <h3 className='pb-4 pr-14'>Sažetak narudžbe</h3>
                            {
                             <>
-                            <p>Ukupna cijena vozila: {order.itemsPrice} €</p>
-                            <p>Cijena isporuke: {order.shippingPrice} €</p>
-                            <p className='text-4xl pt-4'>Ukupno za platiti: <strong className='text-primary'> {order.totalPrice} €</strong></p>
+                            <p className='pr-14'>Ukupna cijena vozila: {order.itemsPrice} €</p>
+                            <p className='pr-14'>Cijena isporuke: {order.shippingPrice} €</p>
+                            <p className='text-4xl pt-4 pr-14'>Ukupno za platiti: <strong className='text-primary'> {order.totalPrice} €</strong></p>
                             </>
                            }
                             {   

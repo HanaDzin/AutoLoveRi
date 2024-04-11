@@ -22,9 +22,7 @@ import store from './store.js'
 import App from './App.jsx'
 import HomeScreen from './screens/HomeScreen.jsx'
 import AllCarsScreen from './screens/AllCarsScreen.jsx'
-import RentaCarScreen from './screens/RentaCarScreen.jsx'
 import NewCarDetailsScreen from './screens/NewCarDetailsScreen.jsx'
-import RentaCarDetailsScreen from './screens/RentaCarDetailsScreen.jsx'
 import NewCarsScreen from './screens/NewCarsScreen.jsx'
 import UsedCarsScreen from './screens/UsedCarsScreen.jsx'
 import AboutUsScreen from './screens/AboutUsScreen.jsx'
@@ -42,7 +40,6 @@ import AdminRoute from './components/AdminRoute.jsx'
 import CarsListScreen from './screens/admin/CarsListScreen.jsx'
 import NewCarEditScreen from './screens/admin/NewCarEditScreen.jsx'
 import UsedCarEditScreen from './screens/admin/UsedCarEditScreen.jsx'
-import RentaCarEditScreen from './screens/admin/RentaCarEditScreen.jsx'
 import UserListScreen from './screens/admin/UserListScreen.jsx'
 import UserEditScreen from './screens/admin/UserEditScreen.jsx'
 import ProfileScreen from './screens/admin/ProfileScreen.jsx'
@@ -55,9 +52,6 @@ const router = createBrowserRouter(
     <Route path='/' element={<App/>}>
       <Route index={true} path='/' element={<HomeScreen/>} />;
       <Route path='/cars' element={<AllCarsScreen/>} />;
-
-      <Route path='/rentacar/' element={<RentaCarScreen/>} />;
-      <Route path='/rentacar/:id' element={<RentaCarDetailsScreen/>} />;
 
 
       <Route path='/newcars/' element={<NewCarsScreen/>} />;
@@ -93,8 +87,6 @@ const router = createBrowserRouter(
 
         <Route path='/admin/newcar/:id/edit' element={<NewCarEditScreen/>} />;
         <Route path='/admin/usedcar/:id/edit' element={<UsedCarEditScreen/>} />
-        <Route path='/admin/rentacar/:id/edit' element={<RentaCarEditScreen/>} />
-
         
         <Route path='/admin/user/:id/edit' element={<UserEditScreen />} />
       </Route>

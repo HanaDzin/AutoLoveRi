@@ -6,13 +6,11 @@ import colors from "colors";
 import users from "./data/users.js"
 import newcars from "./data/CarData.js"
 import usedcars from './data/usedCarsData.js'
-import rentacars from './data/rentaCarsData.js'
 import orders from './data/order.js'
 import reviews from './data/reviewsData.js'
 
 import User from './models/userModel.js';
 import newCar from './models/newCarModel.js';
-import rentaCar from "./models/rentaCarModel.js";
 import usedCar from "./models/usedCarModel.js";
 import Order from './models/orderModel.js';
 import Review from "./models/reviewModel.js";
@@ -30,7 +28,6 @@ const importData = async () => {
         /*await Order.deleteMany();
         await newCar.deleteMany();
         await usedCar.deleteMany();
-        await rentaCar.deleteMany();
         await User.deleteMany();
 
         //kreirati korisnika od podataka iz users.js
@@ -48,10 +45,6 @@ const importData = async () => {
             return { ...car, user: adminUser};
         });
 
-        const sampleRentaCars = rentacars.map((car) => {
-            return { ...car, user: adminUser};
-        });
-
         const sampleOrder = orders.map((order) => {
             return { ...order, user: adminUser};
         });
@@ -59,7 +52,6 @@ const importData = async () => {
         //unos auta u bazu
         await newCar.insertMany(sampleNewCars);
         await usedCar.insertMany(sampleUsedCars);
-        await rentaCar.insertMany(sampleRentaCars);
         await Order.insertMany(sampleOrder);*/
 
         await Review.deleteMany();
@@ -81,7 +73,6 @@ const destroyData = async () => {
         await Order.deleteMany();
         await newCar.deleteMany();
         await usedCar.deleteMany();
-        await rentaCar.deleteMany();
         await User.deleteMany();
 
         console.log('Data Destroyed!'.red.inverse);

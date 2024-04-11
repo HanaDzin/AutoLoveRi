@@ -2,8 +2,6 @@ import asyncHandler from "../middleware/asyncHandler.js";
 
 import newCar from '../models/newCarModel.js'
 import usedCar from '../models/usedCarModel.js'
-import rentaCar from "../models/rentaCarModel.js";
-
 
 
 // @desc dohvat svih novih vozila
@@ -32,6 +30,7 @@ const getNewCarById = asyncHandler (async (req, res) => {
 //@route    POST /api/newcars
 //@access   admin
 const createNewCar = asyncHandler (async (req, res) => {
+    
     const newcar = new newCar ({
         brand: 'BMW',
         model: 'M2',
@@ -164,26 +163,6 @@ const updateUsedCar = asyncHandler (async (req, res) => {
     }
 });
 
-//@desc     Dodaj novo rentacar vozilo (admin)
-//@route    POST /api/rentacar
-//@access   admin
-const createRentaCar = asyncHandler (async (req, res) => {
-    const rentacar = new rentaCar ({
-        brand: 'Sample RentaCar Car',
-        model: 'X',
-        pricePerDay: 0,
-        mileage: 0,
-        user: '65bebe5c95c1a057b6076715',
-        image: '/src/assets/used-captur.png',
-        makeYear: 0,
-        motor: 'Diesel',
-        transmission: 'Manual',
-        description: 'Lorem ipsum'
-    })
-
-    const createdRentaCar = await rentacar.save();
-    res.status(201).json(createdRentaCar);
-});
 
 // @desc Brisanje rabljenog vozila
 // @route DELETE /api/newcars/:id
@@ -201,71 +180,6 @@ const deleteUsedCar = asyncHandler (async (req, res) => {
     }
 });
 
-
-
-
-
-const getRentaCars = asyncHandler (async (req, res) => {
-    const rentaCars = await rentaCar.find({});
-    res.json(rentaCars);
-});
-
-
-const getRentaCarById = asyncHandler (async (req, res) => {
-    const theRentaCar = await rentaCar.findById(req.params.id);
-
-    if (theRentaCar) {
-        return res.json(theRentaCar);
-    } 
-    res.status(404);
-    throw new Error('RentaCar not found');
-});
-
-// @desc Ažuriranje rentacar vozila
-// @route PUT /api/rentacar/:id
-// @acces private/admin
-const updateRentaCar = asyncHandler (async (req, res) => {
-    const { model, brand, pricePerDay, mileage, description, image, makeYear, motor, transmission} = req.body;
-
-    const rentacar = await rentaCar.findById(req.params.id);
-
-    if (rentacar) {
-        rentacar.model = model;
-        rentacar.brand = brand;
-        rentacar.pricePerDay = pricePerDay;
-        rentacar.description = description;
-        rentacar.image = image;
-        rentacar.makeYear = makeYear;
-        rentacar.motor = motor;
-        rentacar.transmission = transmission;
-        rentacar.mileage = mileage;
-
-
-        const updatedRentaCar = await rentacar.save();
-        res.json(updatedRentaCar);
-    } else {
-        res.status(404);
-        throw new Error('Resurs nije pronađen');
-    }
-});
-
-// @desc Brisanje rentacar vozila
-// @route DELETE /api/rentacar/:id
-// @acces private/admin
-const deleteRentaCar = asyncHandler (async (req, res) => {
-
-    const rentacar = await rentaCar.findById(req.params.id);
-
-    if (rentacar) {
-        await rentaCar.deleteOne({ _id: rentacar._id })
-        res.status(200).json({ message: 'Rentacar vozilo obrisano' })
-    } else {
-        res.status(404);
-        throw new Error('Resurs nije pronađen');
-    }
-});
-
-
 export {getNewCars, 
     getNewCarById,
     createNewCar,
@@ -276,10 +190,5 @@ export {getNewCars,
     getUsedCarById,
     createUsedCar,
     updateUsedCar,
-    deleteUsedCar,
-
-    getRentaCars, 
-    getRentaCarById,
-    updateRentaCar,
-    createRentaCar,
-    deleteRentaCar };
+    deleteUsedCar
+ };

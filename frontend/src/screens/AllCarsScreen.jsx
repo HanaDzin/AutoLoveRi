@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 
 import NewCarsScreen from './NewCarsScreen'
 import UsedCarsScreen from './UsedCarsScreen'
-import RentaCarScreen from './RentaCarScreen'
 
 const AllCarsScreen = () => {
   return (

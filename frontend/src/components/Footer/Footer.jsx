@@ -4,28 +4,6 @@ import {FaFacebook, FaLinkedin, FaLocationArrow, FaMobileAlt} from 'react-icons/
 import {FaInstagram} from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 
-const FooterLinks = [
-    {
-      title: 'Početna',
-      link: "/"  
-    },
-
-    {
-      title: 'O nama',
-      link: "/about"  
-    },
-
-    {
-       title: 'Vozila',
-       link: "/cars"  
-    },
-    {
-        title: 'Novosti',
-        link: "/news"  
-     },
-
-]
-
 
 const Footer = () => {
   return (
@@ -57,17 +35,22 @@ const Footer = () => {
                     <h1 className='text-xl font-bold text-justify mb-3
                      sm:text-left '>Važne poveznice</h1>
                     <ul className='flex flex-col gap-3'>
-                        {
-                            FooterLinks.map((data) => {
-                                return (
-                                    <li key={data.title}
-                                    className='cursor-pointer hover:text-primary duration-300'>
-                                    <span className='mr-2'> &#11162; </span>
-                                        <a href={data.link}>{data.title}</a>
-                                    </li>
-                                )
-                            })
-                        }
+                    <li className='cursor-pointer hover:text-primary duration-300'>
+                        <span className='mr-2'> &#11162; </span>
+                        <Link to={`/`}>Početna</Link>
+                    </li>
+                    <li className='cursor-pointer hover:text-primary duration-300'>
+                        <span className='mr-2'> &#11162; </span>
+                        <Link to={`/about`}>O nama</Link>
+                    </li>
+                    <li className='cursor-pointer hover:text-primary duration-300'>
+                        <span className='mr-2'> &#11162; </span>
+                        <Link to={`/cars`}>Vozila</Link>
+                    </li>
+                    <li className='cursor-pointer hover:text-primary duration-300'>
+                        <span className='mr-2'> &#11162; </span>
+                        <Link to={`/news`}>Novosti</Link>
+                    </li>
                     </ul>
                 </div>
             </div>
@@ -77,17 +60,23 @@ const Footer = () => {
                     <h1 className='text-xl font-bold text-justify mb-3
                     sm:text-left '>Važne poveznice</h1>
                     <ul className='flex flex-col gap-3'>
-                        {
-                            FooterLinks.map((data) => {
-                                return (
-                                    <li key={data.title}
-                                    className='cursor-pointer hover:text-primary duration-300'>
-                                    <span className='mr-2'> &#11162; </span>
-                                        <a href={data.link}>{data.title}</a>
-                                    </li>
-                                )
-                            })
-                        }
+                    <li className='cursor-pointer hover:text-primary duration-300'>
+                        <span className='mr-2'> &#11162; </span>
+                        <Link to={`/`}>Početna</Link>
+                    </li>
+                    <li className='cursor-pointer hover:text-primary duration-300'>
+                        <span className='mr-2'> &#11162; </span>
+                        <Link to={`/about`}>O nama</Link>
+                    </li>
+                    <li className='cursor-pointer hover:text-primary duration-300'>
+                        <span className='mr-2'> &#11162; </span>
+                        <Link to={`/cars`}>Vozila</Link>
+                    </li>
+                    <li className='cursor-pointer hover:text-primary duration-300'>
+                        <span className='mr-2'> &#11162; </span>
+                        <Link to={`/news`}>Novosti</Link>
+                    </li>
+
                     </ul>
                 </div>
             </div>
@@ -97,17 +86,23 @@ const Footer = () => {
                     <h1 className='text-xl font-bold text-justify mb-3
                      sm:text-left '>Važne poveznice</h1>
                     <ul className='flex flex-col gap-3'>
-                        {
-                            FooterLinks.map((data) => {
-                                return (
-                                    <Link to={data.link}><li key={data.title}
-                                    className='cursor-pointer hover:text-primary duration-300'>
-                                    <span className='mr-2'> &#11162; </span>
-                                        <a href={data.link}>{data.title}</a>
-                                    </li></Link>
-                                )
-                            })
-                        }
+                    <li className='cursor-pointer hover:text-primary duration-300'>
+                        <span className='mr-2'> &#11162; </span>
+                        <Link to={`/`}>Početna</Link>
+                    </li>
+                    <li className='cursor-pointer hover:text-primary duration-300'>
+                        <span className='mr-2'> &#11162; </span>
+                        <Link to={`/about`}>O nama</Link>
+                    </li>
+                    <li className='cursor-pointer hover:text-primary duration-300'>
+                        <span className='mr-2'> &#11162; </span>
+                        <Link to={`/cars`}>Vozila</Link>
+                    </li>
+                    <li className='cursor-pointer hover:text-primary duration-300'>
+                        <span className='mr-2'> &#11162; </span>
+                        <Link to={`/news`}>Novosti</Link>
+                    </li>
+
                     </ul>
                 </div>
             </div>

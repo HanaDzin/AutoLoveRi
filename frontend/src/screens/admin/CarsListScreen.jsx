@@ -9,12 +9,6 @@ import { useGetUsedCarsQuery,
 useCreateUsedCarMutation,
 useDeleteUsedCarMutation } from '../../slices/usedCarsApiSlice'
 
-import {
-  useGetRentaCarsQuery,
-  useCreateRentaCarMutation,
-useDeleteRentaCarMutation } from '../../slices/rentaCarsApiSlice'
-
-
 
 import { Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
@@ -81,36 +75,6 @@ const CarsListScreen = () => {
       }
     }
 
-    //za rentacars
-    const { data: rentaCars, isLoading: isLoadingRentaCars, error: rentaCarsError , refetchRenta } = useGetRentaCarsQuery();
-    const [createRentaCar, { isLoading: loadingRentaCar }] = useCreateRentaCarMutation();
-    const [deleteRentaCar, { isLoading: loadingDeleteRentaCar }] = useDeleteRentaCarMutation();
-
-    const deleteRentaCarHandler = async (id) => {
-      if (window.confirm('Jeste li sigurni da želite obrisati vozilo?')) {
-        try {
-          await deleteRentaCar(id);
-          toast.success('Rentacar vozilo uspješno obrisano!');
-          refetchRenta();
-        } catch(err) {
-          toast.error(err?.data?.message || err.error)
-        }
-      }
-  };
-
-  const createRentaCarHandler = async () => {
-    if (window.confirm('Jeste li sigurni da želite dodati novo rentacar vozilo?')) {
-      try {
-        await createRentaCar();
-        toast.success('Vozilo uspješno dodano!')
-       refetchRenta();
-      } catch (err) {
-        toast.err(err?.data?.message || err.error)
-      }
-    }
-  }
-
-
   return (
     <div className="dark:bg-dark px-10 mt-16 dark:text-white mt-8 text-center font-bold text-gray-900 min-h-[800px]">
       <div className='items-center justify-center dark:bg-dark container p-10'>
@@ -123,12 +87,12 @@ const CarsListScreen = () => {
             </div>
         </div>
 
-        { loadingRentaCar && <h1>Loading...</h1>}
-        { loadingDeleteRentaCar && <h1>Loading...</h1>}
+        { loadingCreateNewCar && <h1>Loading...</h1>}
+        { loadingDeleteNewCar && <h1>Loading...</h1>}
         {
           isLoadingNewCars ? <h1>Loading...</h1> : error ? <h1>{error}</h1> : (
                 <>
-                <table class="text-md text-serif min-w-full">
+                <table className="text-md text-serif min-w-full">
             <thead className='text-primary shadow-lg'>
               <tr>
                 <th className="px-4 py-2 ">ID</th>
@@ -153,7 +117,11 @@ const CarsListScreen = () => {
                 onClick={() => deleteHandler(car._id)}>
                 <FaTrash style={{color: 'red'}} /></button>
                 </td>
-                <td><button className='rounded-lg border-2 border-[green] p-1.5 hover:scale-105'>Detalji</button></td>
+                <td>
+                  <Link to={`/newcars/${car._id}`}>
+                <button className='rounded-lg border-2 border-[green] p-1.5 hover:scale-105'>Detalji</button>
+                  </Link>
+                </td>
               </tr>
             ))}
           </tbody>
@@ -208,57 +176,6 @@ const CarsListScreen = () => {
     </>
     )
   }
-
-
-    <div className='pt-16'>
-            <div></div>
-            <div className='items-right justify-right text-right'>
-            <button className='button-outline' onClick={ createRentaCarHandler }>Dodaj novi renta-a-car</button>
-            </div>
-        </div>
-
-        { loadingRentaCar && <h1>Loading...</h1>}
-        { loadingDeleteRentaCar && <h1>Loading...</h1>}
-        {
-          isLoadingRentaCars ? <h1>Loading...</h1> : error ? <h1>{error}</h1> : (
-                <>
-                <table class="text-md text-serif min-w-full">
-            <thead className='text-primary shadow-lg'>
-              <tr>
-                <th className="px-4 py-2 ">ID</th>
-                <th className="px-4 py-2 ">Naziv vozila</th>
-                <th className="px-4 py-2 ">Cijena/Dan</th>
-                <th className="px-4 py-2 ">Kategorija</th>
-              </tr>
-          </thead>
-
-          <tbody>
-            { rentaCars.map((car) => (
-              <tr key={car._id} >
-                <td className='px-4 py-2'>{car._id}</td>
-                <td className='px-4 py-2'>{car.brand} {car.model}</td>
-                <td className='px-4 py-2'>{(car.pricePerDay).toFixed(2)} € </td>
-                <td className='px-4 py-2'>Rent-A-Car</td>
-                <td className='px-4 py-2'>
-                <Link to={`/admin/rentacar/${car._id}/edit`}>
-                    <button className='button-outline'><FaEdit /></button>
-                </Link>
-                <button className='mx-2 button-outline'
-                onClick={() => deleteRentaCarHandler(car._id)}>
-                <FaTrash style={{color: 'red'}} /></button>
-                </td>
-                <td><button className='rounded-lg border-2 border-[green] p-1.5 hover:scale-105'>Detalji</button></td>
-              </tr>
-            ))}
-          </tbody>
-      </table> 
-    </>
-    )
-  }
-
-
-
-
 
       </div>
     </div>
